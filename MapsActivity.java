@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 
 import com.google.android.gms.appindexing.Action;
@@ -50,10 +51,11 @@ public abstract class MapsActivity extends AppCompatActivity implements OnMapRea
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    private android.os.Bundle savedInstanceState;
 
 
     protected void onCreate() {
-        //super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         /*setContentView(R.layout.activity_maps);
@@ -73,9 +75,11 @@ public abstract class MapsActivity extends AppCompatActivity implements OnMapRea
 
     protected void onStart() {
         onCreate();
+        ActivityCompat.requestPermissions(MapsActivity.this,new String[]
+                {Manifest.permission.ACCESS_FINE_LOCATION},1);
         mGoogleApiClient.connect();
         super.onStart();
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
             return;
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
@@ -119,6 +123,32 @@ public abstract class MapsActivity extends AppCompatActivity implements OnMapRea
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(rutgers));
     }*/
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(MapsActivity.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
     protected void createLocationRequest() {
         //Create location request
         LocationRequest mLocationRequest = new LocationRequest();
@@ -182,7 +212,7 @@ public abstract class MapsActivity extends AppCompatActivity implements OnMapRea
     public double deg2rad(double deg) {
         return deg * (Math.PI / 180);
     }
-
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -190,7 +220,7 @@ public abstract class MapsActivity extends AppCompatActivity implements OnMapRea
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
+    }*/
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
