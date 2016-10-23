@@ -171,7 +171,8 @@ public abstract class MainActivity extends AppCompatActivity implements OnMapRea
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, ll);
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         //mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         //if (checkDistance() < limit)
         {
