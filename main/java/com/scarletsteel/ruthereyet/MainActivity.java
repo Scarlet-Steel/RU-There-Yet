@@ -21,12 +21,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -49,8 +46,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback
         , LocationListener, GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks{
@@ -76,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ImageView myImage;
     TextView routeText;
     TextView stopText;
-    Context mContext;
     public final static String EXTRA_MESSAGE = "this is the message";
 
 
@@ -84,10 +78,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mContext = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
 
 //        setContentView(R.layout.activity_maps);
@@ -100,6 +101,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         myButton = (Button) findViewById(R.id.myButton);
         routeText = (TextView) findViewById(R.id.route);
         stopText = (TextView) findViewById(R.id.stop);
+//        myButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                myText.setText("lol");
+//            }
+//        });
+        // myImage = (ImageView) findViewById(R.id.logo);
 
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -135,9 +143,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void sendMessage(View view) {
+        myText.setText("doing the thing");
 
         Intent intent = new Intent(this, DisplayMessageActivity.class);
-        String message = routeText.getText().toString();
+        EditText editText = (EditText) findViewById(R.id.message);
+        String message = editText.getText().toString();
 
         SharedPreferences.Editor editor = getSharedPreferences(PREFS, MODE_PRIVATE).edit();
         editor.putString("route", message);
@@ -148,13 +158,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         startActivity(intent);
     }
 
-    public ArrayList<String> getRoutes() {
+    public String getRoutes() {
         //Query database
-        ArrayList<String> routes = new ArrayList<String>();
-        routes.add("A");
-        routes.add("B");
-        routes.add("C");
-        return routes;
+        return "A";
     }
 
     @Override
@@ -168,34 +174,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         System.out.println("Set routeText to " + route);
         String stop = prefs.getString("stop", "No stop defined!"); //0 is the default value.
         stopText.setText(stop);
-        int titleID = myText.getId();
-
-        final ArrayList<String> routeList = getRoutes();
-        final ArrayList<Button> routeButtons = new ArrayList<Button>();
-
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.content_main);
-
-        for (int i = 0; i < routeList.size(); i++) {
-            Button temp = new Button(this);
-            temp.setText(routeList.get(i));
-            temp.setId(i+1);
-
-            final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            if (i == 0) {
-                params.addRule(RelativeLayout.BELOW, titleID);
-            } else {
-                params.addRule(RelativeLayout.BELOW, i);
-            }
-            temp.setLayoutParams(params);
-            routeButtons.add(temp);
-
-            temp.setOnClickListener(new myOnClickListener(i, routeButtons, routeText, mContext) {
-
-            });
-
-            layout.addView(temp);
-        }
 
 
 

@@ -18,53 +18,40 @@
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/appBarLayout">
+        android:layout_alignParentTop="true">
 
     </android.support.design.widget.AppBarLayout>
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Stop"
+        android:text="Route not specified!"
         android:textSize = "@dimen/big_text_size"
         android:shadowColor = "#000000"
-        android:id="@+id/title"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/route"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/route"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/stopButton"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Confirm"
         android:onClick="setStop"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_alignParentEnd="true"
-        />
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/stop"
+        android:layout_alignParentStart="true" />
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="No Stop Specified"
+        android:hint="enter stop name"
         android:textSize = "@dimen/big_text_size"
         android:id="@+id/stop"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="No Route Specified"
-        android:textSize = "@dimen/big_text_size"
-        android:id="@+id/route"
-        android:layout_alignBottom="@+id/stop"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="53dp"/>
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/message"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
