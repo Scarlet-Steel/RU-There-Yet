@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.scarletsteel.ruthereyet">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -31,10 +32,6 @@
         <activity
             android:name=".DisplayMessageActivity"
             android:label="@string/title_activity_display_message"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".AlarmSettings"
-            android:label="@string/title_activity_alarm_settings"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
