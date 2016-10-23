@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 Math.sin(dLon / 2) * Math.sin(dLon / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double d = R * c; // Distance in km
-        return d / 1000;
+        return d * 1000;
     }
 
     public Action getIndexApiAction() {
