@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RUThereYet</string>
+    <string name="action_settings">Settings</string>
+    <string name="stringText">Some random text</string>
+    <string name="title_activity_display_message">DisplayMessageActivity</string>
+    <string name="title_activity_alarm_settings">AlarmSettings</string>
+    <string-array name="menu_options">
+        <item>So</item>
+        <item>This</item>
+        <item>Menu</item>
+        <item>Can</item>
+        <item>Do</item>
+        <item>Stuff</item>
+    </string-array>
+</resources>

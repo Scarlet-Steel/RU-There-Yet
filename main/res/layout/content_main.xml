@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main"
+    tools:context=".MainActivity">
+
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/logo"-->
+        <!--android:src="@drawable/logo"-->
+        <!--android:layout_below="@+id/textView"-->
+        <!--android:layout_centerHorizontal="true" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Route:"
+        android:textSize = "@dimen/big_text_size"
+        android:shadowColor = "#000000"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop not specified"
+        android:textSize = "@dimen/big_text_size"
+        android:shadowColor = "#000000"
+        android:id="@+id/stop"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Route not specified"
+    android:textSize = "@dimen/big_text_size"
+    android:shadowColor = "#000000"
+    android:id="@+id/route"
+        android:layout_alignBottom="@+id/stop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp" />
+
+
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Confirm"
+        android:onClick="sendMessage"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
